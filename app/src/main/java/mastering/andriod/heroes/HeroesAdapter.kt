@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import mastering.andriod.heroes.databinding.ItemNameBinding
 import mastering.andriod.heroes.models.Hero
 
-class HeroesAdapter(private var heroes: List<Hero>): RecyclerView.Adapter<HeroVH>() {
+class HeroesAdapter(private var heroes: List<Hero>, private val listener: HeroClickListener): RecyclerView.Adapter<HeroesAdapter.HeroVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroVH {
         val binding = ItemNameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,10 +24,17 @@ class HeroesAdapter(private var heroes: List<Hero>): RecyclerView.Adapter<HeroVH
         heroes = newHeroes
         notifyItemRangeInserted(oldSize, newHeroes.size)
     }
+
+    inner class HeroVH(private val binding: ItemNameBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(hero: Hero) {
+            binding.name.text = hero.name
+            binding.name.setOnClickListener {
+                listener.onHeroClicked(hero)
+            }
+        }
+    }
 }
 
-class HeroVH(private val binding: ItemNameBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(hero: Hero) {
-        binding.name.text = hero.name
-    }
+interface HeroClickListener {
+    fun onHeroClicked(hero: Hero)
 }

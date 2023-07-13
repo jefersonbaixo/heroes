@@ -9,5 +9,15 @@
         android:id="@+id/allHeroesFragment"
         android:name="mastering.andriod.heroes.AllHeroesFragment"
         android:label="fragment_all_heroes"
-        tools:layout="@layout/fragment_all_heroes" />
+        tools:layout="@layout/fragment_all_heroes" >
+        <action
+            android:id="@+id/action_allHeroesFragment_to_heroDetailsFragment"
+            app:destination="@id/heroDetailsFragment"
+            app:popUpTo="@id/allHeroesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/heroDetailsFragment"
+        android:name="mastering.andriod.heroes.HeroDetailsFragment"
+        android:label="fragment_hero_details"
+        tools:layout="@layout/fragment_hero_details" />
 </navigation>

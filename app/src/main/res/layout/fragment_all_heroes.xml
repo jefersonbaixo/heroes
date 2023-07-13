@@ -13,4 +13,23 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 
+    <FrameLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/loading_bg_color"
+        android:visibility="invisible"
+        >
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="true"
+            android:layout_gravity="center"
+            />
+    </FrameLayout>
+
+
+
+
+
 </FrameLayout>

@@ -18,14 +18,18 @@ class AllHeroesViewModel : ViewModel() {
     private val _errorData = MutableLiveData<String>()
     val errorData: LiveData<String> = _errorData
 
+    private val _loadingData = MutableLiveData<Boolean>()
+    val loadingData: LiveData<Boolean> = _loadingData
 
     fun fetchHeroes() {
+        _loadingData.value = true
         Client.marvelApiService.getCharacters(heroesData.value?.size ?: 0)
             .enqueue(object : Callback<CharacterResponse> {
                 override fun onResponse(
                     call: Call<CharacterResponse>,
                     response: Response<CharacterResponse>
                 ) {
+                    _loadingData.value = false
                     if (response.isSuccessful) {
                         val characterResponse = response.body()
                         val characters = characterResponse?.data?.results ?: listOf()
@@ -38,6 +42,7 @@ class AllHeroesViewModel : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<CharacterResponse>, t: Throwable) {
+                    _loadingData.value = false
                     _errorData.value = t.message ?: "Request failed"
                 }
             })

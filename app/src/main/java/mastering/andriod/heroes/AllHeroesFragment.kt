@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import mastering.andriod.heroes.databinding.FragmentAllHeroesBinding
+import mastering.andriod.heroes.models.Hero
 
-class AllHeroesFragment : Fragment() {
+class AllHeroesFragment : Fragment(), HeroClickListener {
 
     private lateinit var binding: FragmentAllHeroesBinding
     private lateinit var viewModel: AllHeroesViewModel
@@ -34,7 +36,7 @@ class AllHeroesFragment : Fragment() {
 
     private fun setupList() {
         with(binding) {
-            adapter = HeroesAdapter(mutableListOf())
+            adapter = HeroesAdapter(mutableListOf(), this@AllHeroesFragment)
             list.adapter = adapter
 
             list.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -52,6 +54,13 @@ class AllHeroesFragment : Fragment() {
         viewModel.heroesData.observe(viewLifecycleOwner) {
             adapter.updateHeroes(it)
         }
+        viewModel.loadingData.observe(viewLifecycleOwner) {
+            binding.loading.visibility = if (it) View.VISIBLE else View.GONE
+        }
+    }
+
+    override fun onHeroClicked(hero: Hero) {
+        findNavController().navigate(R.id.action_allHeroesFragment_to_heroDetailsFragment)
     }
 
 }
