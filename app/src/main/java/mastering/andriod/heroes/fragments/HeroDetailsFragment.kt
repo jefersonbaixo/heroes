@@ -1,33 +1,51 @@
 package mastering.andriod.heroes.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import mastering.andriod.heroes.viewmodels.HeroDetailsViewModel
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import mastering.andriod.heroes.R
+import mastering.andriod.heroes.databinding.FragmentHeroDetailsBinding
 
 class HeroDetailsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = HeroDetailsFragment()
-    }
-
-    private lateinit var viewModel: HeroDetailsViewModel
+    private lateinit var binding: FragmentHeroDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_hero_details, container, false)
+    ): View {
+        binding = FragmentHeroDetailsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HeroDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val args: HeroDetailsFragmentArgs by navArgs()
+        val name = args.hero.name
+        val imageUrl = args.hero.thumbnail.getFullImageUrl()
+        val description = args.hero.description.ifEmpty { "No description available" }
+
+        with(binding) {
+            heroName.text = name
+            heroDescription.text = description
+            Glide.with(this@HeroDetailsFragment).load(imageUrl).centerCrop()
+                .placeholder(R.drawable.loading_bg_color)
+                .error(R.drawable.baseline_no_photography_24)
+                .into(heroImage)
+        }
+
+        val toolbar = binding.toolbar
+        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.arrow_back) // Replace with your custom back button icon
+        }
+
     }
 
 }

@@ -19,5 +19,9 @@
         android:id="@+id/heroDetailsFragment"
         android:name="mastering.andriod.heroes.fragments.HeroDetailsFragment"
         android:label="fragment_hero_details"
-        tools:layout="@layout/fragment_hero_details" />
+        tools:layout="@layout/fragment_hero_details" >
+        <argument
+            android:name="hero"
+            app:argType="mastering.andriod.heroes.models.Hero" />
+    </fragment>
 </navigation>

@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import mastering.andriod.heroes.viewmodels.AllHeroesViewModel
 import mastering.andriod.heroes.adapters.HeroClickListener
 import mastering.andriod.heroes.adapters.HeroesAdapter
-import mastering.andriod.heroes.R
 import mastering.andriod.heroes.databinding.FragmentAllHeroesBinding
 import mastering.andriod.heroes.models.Hero
 
@@ -64,7 +63,8 @@ class AllHeroesFragment : Fragment(), HeroClickListener {
     }
 
     override fun onHeroClicked(hero: Hero) {
-        findNavController().navigate(R.id.action_allHeroesFragment_to_heroDetailsFragment)
+        val action = AllHeroesFragmentDirections.actionAllHeroesFragmentToHeroDetailsFragment(hero)
+        findNavController().navigate(action)
     }
 
 }
