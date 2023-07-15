@@ -1,4 +1,4 @@
-package mastering.andriod.heroes
+package mastering.andriod.heroes.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import mastering.andriod.heroes.viewmodels.HeroDetailsViewModel
+import mastering.andriod.heroes.R
 
 class HeroDetailsFragment : Fragment() {
 

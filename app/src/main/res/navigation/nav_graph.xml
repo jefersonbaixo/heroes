@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/allHeroesFragment"
-        android:name="mastering.andriod.heroes.AllHeroesFragment"
+        android:name="mastering.andriod.heroes.fragments.AllHeroesFragment"
         android:label="fragment_all_heroes"
         tools:layout="@layout/fragment_all_heroes" >
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/heroDetailsFragment"
-        android:name="mastering.andriod.heroes.HeroDetailsFragment"
+        android:name="mastering.andriod.heroes.fragments.HeroDetailsFragment"
         android:label="fragment_hero_details"
         tools:layout="@layout/fragment_hero_details" />
 </navigation>

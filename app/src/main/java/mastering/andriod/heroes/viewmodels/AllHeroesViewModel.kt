@@ -1,4 +1,4 @@
-package mastering.andriod.heroes
+package mastering.andriod.heroes.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

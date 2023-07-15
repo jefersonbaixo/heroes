@@ -1,4 +1,4 @@
-package mastering.andriod.heroes
+package mastering.andriod.heroes.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

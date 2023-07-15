@@ -1,4 +1,4 @@
-package mastering.andriod.heroes
+package mastering.andriod.heroes.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import mastering.andriod.heroes.viewmodels.AllHeroesViewModel
+import mastering.andriod.heroes.adapters.HeroClickListener
+import mastering.andriod.heroes.adapters.HeroesAdapter
+import mastering.andriod.heroes.R
 import mastering.andriod.heroes.databinding.FragmentAllHeroesBinding
 import mastering.andriod.heroes.models.Hero
 
