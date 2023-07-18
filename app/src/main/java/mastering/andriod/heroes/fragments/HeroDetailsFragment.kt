@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import mastering.andriod.heroes.R
@@ -25,6 +26,12 @@ class HeroDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupView()
+        setupToolbar()
+
+    }
+
+    private fun setupView() {
         val args: HeroDetailsFragmentArgs by navArgs()
         val name = args.hero.name
         val imageUrl = args.hero.thumbnail.getFullImageUrl()
@@ -38,14 +45,18 @@ class HeroDetailsFragment : Fragment() {
                 .error(R.drawable.baseline_no_photography_24)
                 .into(heroImage)
         }
+    }
 
+    private fun setupToolbar() {
         val toolbar = binding.toolbar
         (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
         (requireActivity() as AppCompatActivity).supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.arrow_back) // Replace with your custom back button icon
+            setHomeAsUpIndicator(R.drawable.arrow_back)
         }
-
+        toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
 }
