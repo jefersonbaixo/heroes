@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace 'mastering.andriod.heroes'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "mastering.andriod.heroes"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -51,6 +51,7 @@ android {
 
 dependencies {
 
+    implementation 'androidx.core:core-ktx:+'
     def nav_version = "2.6.0"
     def room_version = "2.5.2"
 
@@ -74,7 +75,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.15.1'
 
     // Gson
-    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'

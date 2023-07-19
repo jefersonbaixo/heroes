@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import mastering.andriod.heroes.models.CharacterResponse
 import mastering.andriod.heroes.models.Hero
+import mastering.andriod.heroes.parseHero
 import mastering.andriod.heroes.services.Client
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,7 +33,9 @@ class AllHeroesViewModel : ViewModel() {
                     _loadingData.value = false
                     if (response.isSuccessful) {
                         val characterResponse = response.body()
-                        val characters = characterResponse?.data?.results ?: listOf()
+                        val characters = characterResponse?.data?.results?.map {
+                            parseHero(it)
+                        } ?: listOf()
                         val newList = heroesData.value?.plus(characters) ?: characters
                         _heroesData.value = newList
                     } else {

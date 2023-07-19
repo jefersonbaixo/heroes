@@ -1,5 +1,7 @@
 package mastering.andriod.heroes
 
+import mastering.andriod.heroes.models.Hero
+import mastering.andriod.heroes.models.HeroResponse
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
@@ -21,3 +23,11 @@ fun generateHash(): String {
 
     return result.toString()
 }
+
+fun parseHero(heroResponse: HeroResponse) = Hero(
+    id = heroResponse.id,
+    name = heroResponse.name,
+    description = heroResponse.description,
+    imageUrl = heroResponse.thumbnail.getFullImageUrl()
+)
+

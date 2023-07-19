@@ -34,7 +34,7 @@ class HeroDetailsFragment : Fragment() {
     private fun setupView() {
         val args: HeroDetailsFragmentArgs by navArgs()
         val name = args.hero.name
-        val imageUrl = args.hero.thumbnail.getFullImageUrl()
+        val imageUrl = args.hero.imageUrl
         val description = args.hero.description.ifEmpty { "No description available" }
 
         with(binding) {

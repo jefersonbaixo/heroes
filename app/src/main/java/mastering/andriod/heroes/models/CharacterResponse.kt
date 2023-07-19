@@ -13,6 +13,6 @@ data class CharacterResponse(
 
 data class CharacterData(
     @SerializedName("results")
-    val results: List<Hero>
+    val results: List<HeroResponse>
 )
 
