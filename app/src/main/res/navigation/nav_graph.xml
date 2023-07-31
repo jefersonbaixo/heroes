@@ -9,7 +9,7 @@
         android:id="@+id/allHeroesFragment"
         android:name="mastering.andriod.heroes.fragments.AllHeroesFragment"
         android:label="fragment_all_heroes"
-        tools:layout="@layout/fragment_all_heroes" >
+        tools:layout="@layout/fragment_all_heroes">
         <action
             android:id="@+id/action_allHeroesFragment_to_heroDetailsFragment"
             app:destination="@id/heroDetailsFragment"
@@ -19,9 +19,19 @@
         android:id="@+id/heroDetailsFragment"
         android:name="mastering.andriod.heroes.fragments.HeroDetailsFragment"
         android:label="fragment_hero_details"
-        tools:layout="@layout/fragment_hero_details" >
+        tools:layout="@layout/fragment_hero_details">
         <argument
             android:name="hero"
             app:argType="mastering.andriod.heroes.models.Hero" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="mastering.andriod.heroes.fragments.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites">
+        <action
+            android:id="@+id/action_favoritesFragment_to_heroDetailsFragment"
+            app:destination="@id/heroDetailsFragment"
+            app:popUpTo="@id/favoritesFragment" />
     </fragment>
 </navigation>

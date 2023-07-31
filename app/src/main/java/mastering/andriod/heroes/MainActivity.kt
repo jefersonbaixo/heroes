@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import mastering.andriod.heroes.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,12 +21,15 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
+        val bottomNav = binding.bottomNavigationView
+
+        bottomNav.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.heroDetailsFragment) {
+            if (destination.id == R.id.heroDetailsFragment) {
                 binding.bottomNavigationView.visibility = View.GONE
-            } else {
-                binding.bottomNavigationView.visibility = View.VISIBLE
+                return@addOnDestinationChangedListener
             }
+            binding.bottomNavigationView.visibility = View.VISIBLE
         }
     }
 
